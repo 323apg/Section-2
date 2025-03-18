@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 #Load point cloud data
-data = np.loadtxt("data.dat")
+data = np.loadtxt("mesh.dat")
 
 #a
 def graham_scan(points):
