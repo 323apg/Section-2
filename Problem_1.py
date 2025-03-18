@@ -8,7 +8,7 @@ def load_dat(file='mesh.dat', skiprows=1):
     plt.figure()
     plt.scatter(pts[:,0], pts[:,1], c='blue')
     plt.title("mesh.dat")
-    plt.savefig()
+    plt.show()
     return pts
 
 #1b)
@@ -86,7 +86,7 @@ def showcase(points, hull_func, title):
     hull = np.vstack([hull, hull[0]])
     plt.plot(hull[:,0], hull[:,1], 'r', label='Hull')
     plt.legend()
-    plt.savefig()
+    plt.show()
 
 #2a) 
 def point_cloud(n, min_val=0, max_val=1):
@@ -114,7 +114,7 @@ def plot_time_complexity(n_list, min_val=0, max_val=1):
     plt.ylabel("Time (s)")
     plt.title(f"[{min_val},{max_val}]^2")
     plt.legend()
-    plt.savefig()
+    plt.show()
 
 #2c) 
 def plot_time_histogram(n, runs, min_val=0, max_val=1):
@@ -126,7 +126,7 @@ def plot_time_histogram(n, runs, min_val=0, max_val=1):
         plt.title(f"{title} histogram (n={n}, {runs} runs)")
         plt.xlabel("Time (s)")
         plt.ylabel("Frequency")
-        plt.savefig()
+        plt.show()
 
 #2d) (Already covered by the histogram approach n=50, runs=100)
 
