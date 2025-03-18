@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 #a
 def visualize():
     # If your header is space-separated:
-    # data = np.loadtxt('mesh.dat', skiprows=1)
+    data = np.loadtxt('mesh.dat', skiprows=1)
 
     x = data[:, 0]
     y = data[:, 1]
