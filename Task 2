@@ -1,0 +1,82 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.spatial import Delaunay
+from collections import Counter
+from matplotlib import cm
+
+def surface1(x, y):
+    return 2*(x**2 + y**2)
+
+def surface2(x, y):
+    return 2*np.exp(-(x**2 + y**2))
+
+#a)
+def a():
+    steps = 21
+    xs = np.linspace(-1, 1, steps)
+    ys = np.linspace(-1, 1, steps)
+    X, Y = np.meshgrid(xs, ys)
+    Z1 = surface1(X, Y)
+    Z2 = surface2(X, Y)
+    mask = (Z1 <= Z2)
+    x2d = X[mask]
+    y2d = Y[mask]
+    return x2d, y2d
+
+#b)
+def b():
+    x2d, y2d = a()
+    n = len(x2d)
+    tri_2d = Delaunay(np.column_stack([x2d, y2d])).simplices
+    zb = surface1(x2d, y2d)
+    zt = surface2(x2d, y2d)
+    all_x = np.concatenate([x2d, x2d])
+    all_y = np.concatenate([y2d, y2d])
+    all_z = np.concatenate([zb, zt])
+    tri_bottom = tri_2d
+    tri_top = tri_2d + n
+    all_tri = np.vstack([tri_bottom, tri_top])
+    fig = plt.figure()
+    ax = fig.add_subplot(projection='3d')
+    ax.plot_trisurf(all_x, all_y, all_z, triangles=all_tri, cmap=cm.viridis)
+    plt.show()
+
+#c)
+def c():
+    nx, ny, nz = 51, 51, 21
+    xs = np.linspace(-1, 1, nx)
+    ys = np.linspace(-1, 1, ny)
+    zs = np.linspace(0, 2, nz)
+    X, Y, Z = np.meshgrid(xs, ys, zs)
+    Z1 = surface1(X, Y)
+    Z2 = surface2(X, Y)
+    mask = (Z >= Z1) & (Z <= Z2)
+    x3d = X[mask]
+    y3d = Y[mask]
+    z3d = Z[mask]
+    pts_3d = np.column_stack([x3d, y3d, z3d])
+    tets = Delaunay(pts_3d).simplices
+    return pts_3d, tets
+
+#d)
+def d():
+    pts_3d, tets = c()
+    face_count = Counter()
+    for tet in tets:
+        i1, i2, i3, i4 = sorted(tet)
+        face_count.update([
+            (i1, i2, i3),
+            (i1, i2, i4),
+            (i1, i3, i4),
+            (i2, i3, i4)
+        ])
+    boundary = [f for f, cnt in face_count.items() if cnt == 1]
+    fig = plt.figure()
+    ax = fig.add_subplot(projection='3d')
+    ax.plot_trisurf(pts_3d[:,0], pts_3d[:,1], pts_3d[:,2],
+                    triangles=boundary, cmap=cm.viridis)
+    plt.show()
+
+if __name__ == "__main__":
+    b()  #runs a() inside
+    d()  #runs c() inside
