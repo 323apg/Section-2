@@ -1,16 +1,10 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-#Load point cloud data
-data = np.loadtxt("mesh.dat", skiprows=1)
-
 #a
 def visualize():
     # If your header is space-separated:
     # data = np.loadtxt('mesh.dat', skiprows=1)
-
-    # If your header is comma-separated (e.g. "x, y"):
-    data = np.loadtxt('mesh.dat', delimiter=',', skiprows=1)
 
     x = data[:, 0]
     y = data[:, 1]
