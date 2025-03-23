@@ -1,0 +1,18 @@
+
+Conclusion on Ranges [0,1] vs. [-5,5]:
+
+1. All four algorithms show similar growth trends in both ranges, indicating their 
+   underlying time complexities (O(n log n) or O(nh)) remain the main factor.
+
+2. Jarvis March exhibits a larger runtime difference at higher n. Since it's O(nh), 
+   if the hull is bigger (which can happen more often in [-5,5]), the algorithm does more work.
+
+3. Graham Scan, Quickhull, and Monotone Chain do not show as large a variance 
+   because they are typically O(n log n) and less sensitive to hull size.
+
+4. Overall, the difference in runtime due to range alone is modest for most algorithms, 
+   but distributions that increase hull size can cause noticeable slowdowns, 
+   especially for Jarvis March.
+
+Hence, while the bounding box changes the spread of points, the biggest impact on runtime 
+is still each algorithm's theoretical complexity and how many points end up on the hull.

@@ -1,0 +1,13 @@
+
+Conclusion on Runtime Distributions (n=50, 100 Trials):
+
+1. All algorithms are quite fast at n=50; most runs complete in a fraction of a millisecond.
+2. Histograms show a typical right-skewed distribution, where most runs cluster at low runtime,
+   but a few outliers take longer.
+3. Jarvis March can exhibit a broader tail, reflecting its O(nh) complexity
+   (it can approach O(n^2) when many points lie on the hull).
+4. Graham Scan, Quickhull, and Monotone Chain all remain near O(n log n),
+   so their runtime distributions are relatively tight.
+
+Overall, for n=50, differences among the algorithms are modest, but Jarvis March
+does show occasional slower runs compared to the others.

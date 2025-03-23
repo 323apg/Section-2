@@ -1,0 +1,14 @@
+
+Conclusion on Convex Hull Algorithm Performance:
+
+1. Monotone Chain (O(n log n)) remains quite efficient for all tested n.
+2. Graham Scan (O(n log n)) grows similarly, though slightly higher than Monotone Chain in the data.
+3. Quickhull, typically O(n log n), shows more variation but remains moderately fast for random data.
+4. Jarvis March (O(nh)) can approach O(n^2) when many points lie on the hull, making it the slowest at n=1000.
+
+Overall, the results align with theoretical complexities:
+- Monotone Chain and Graham Scan scale reliably with n log n complexity.
+- Jarvis March can degrade if the hull is large.
+- Quickhull is usually good, but can degrade in the worst case.
+
+All runtimes remain under 0.02 seconds at n=1000, indicating that for moderate n, any of these methods is practically feasible.
